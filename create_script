@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ -n "$1" ]
+then
+mkdir $1
+cd $1
+fi
+
+touch main.cpp
+exec 1>main.cpp
+echo "#include <iostream>"
+echo "using namespace std;"
+echo ""
+echo "int main()"
+echo "{"
+echo "  cout << \"$1\" << endl;"
+echo ""
+echo "  return 0;"
+echo "}"
+
+touch compile
+exec 1>compile
+echo "#!/bin/bash"
+echo ""
+echo "g++ main.cpp -o exec && ./exec"
+
+chmod +x compile
