@@ -18,6 +18,6 @@ int main(int argc, char *argv[]) {
   out.seekp(atoi(argv[2]), ios::beg);
   out.put('X');
   out.close();
-  
+
   return 0;
 }
