@@ -7,10 +7,7 @@
 // bool before(const type_info &ob);
 // const char *name();
 */
-
 using namespace std;
-
-
 
 class myclass {};
 class Base {
@@ -20,6 +17,10 @@ class Base {
 class Derived1: public Base {};
 class Derived2: public Base {};
 
+/* Демонстрация применения оператора typeid к ссылочному параметру. */
+void WhatType(Base &ob){
+  cout << "Параметр ob ссылается на объект типа " << typeid(ob).name() << endl;
+}
 
 int main()
 {
@@ -34,6 +35,7 @@ int main()
   if(typeid(i) == typeid(j)) cout << "Типы переменных i и j одинаковы.\n";
   if(typeid(i) != typeid(f)) cout << "Типы переменных i и f неодинаковы.\n";
   
+  cout << "\n" << typeid(int).name();
 
   cout << "\n\n";
   Base *p, baseob;
@@ -45,7 +47,11 @@ int main()
   cout << "Переменная p указывает на объект типа " << typeid(*p).name() << endl;
   p = &ob2;
   cout << "Переменная p указывает на объект типа " << typeid(*p).name() << endl;
-  
+ 
+  cout << "\n";  
+  WhatType(baseob);
+  WhatType(ob1);
+  WhatType(ob2);
 
   return 0;
 }
